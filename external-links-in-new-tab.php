@@ -42,6 +42,9 @@ class Elinewtab {
      */
     public function initialize_modules(){
         do_action( 'elint/before_load' );
+
+        require_once self::plugin_dir() . 'core/bootstrap.php';
+
         do_action( 'elint/after_load' );
     }  
 
