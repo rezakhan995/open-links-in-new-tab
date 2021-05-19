@@ -64,3 +64,50 @@ function olint_initialize_links_in_new_tab() {
     </script>
     <?php
 }
+
+add_action( 'admin_menu', 'olint_admin_menu' );
+function olint_admin_menu() {
+    add_options_page( esc_html__( 'Open links in new tab', "open-links-in-new-tab" ),
+        esc_html__( 'Open Links', "open-links-in-new-tab" ),
+        'manage_options',
+        'open_links_in_new_tab',
+        'olint_options_page' );
+}
+
+function olint_options_page() {
+    ?>
+    <div class="olint-wrap">
+        <h2><?php echo esc_html__( "Open Links in New Tab", "open-links-in-new-tab" );?></h2>
+        <p>
+            <form method="post" action="options.php">
+                <?php wp_nonce_field( 'update-options' );?>
+                <?php echo esc_html__( "By default, all external links (i.e. links that point outside the current host name) will open in a new tab.", "open-links-in-new-tab" );?><br />
+                <?php echo esc_html__( "You can change this feature by below options. You can also open internal links in new tab.", "open-links-in-new-tab" );?><br /><br />
+                
+                <input class="olint-input input-text" name="olint_open_external_link_in_new_tab" type="checkbox" id="olint_open_external_link_in_new_tab" value="yes" <?php echo ('yes' === get_option( 'olint_open_external_link_in_new_tab', '' )) ? 'checked' : ''; ?> /> 
+                <label for="olint_open_external_link_in_new_tab"><?php echo esc_html__('Open external links in new tab','open-links-in-new-tab');?></label><br>
+                <input class="olint-input input-text" name="olint_open_internal_link_in_new_tab" type="checkbox" id="olint_open_internal_link_in_new_tab" value="yes" <?php echo ('yes' === get_option( 'olint_open_internal_link_in_new_tab', '' )) ? 'checked' : ''; ?> />
+                <label for="olint_open_internal_link_in_new_tab"><?php echo esc_html__('Open internal links in new tab','open-links-in-new-tab');?></label><br>
+
+                <input type="hidden" name="action" value="update" />
+                <input type="hidden" name="page_options" value="olint_open_external_link_in_new_tab,olint_open_internal_link_in_new_tab" />
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
+            </form>
+        </p>
+    </div>
+    <?php
+}
+
+
+register_activation_hook( __FILE__, 'olint_activate' );
+register_deactivation_hook( __FILE__, 'olint_deactivate' );
+
+function olint_activate() {
+    update_option( "olint_open_external_link_in_new_tab", 'yes' );
+    update_option( "olint_open_internal_link_in_new_tab", '' );
+}
+
+function olint_deactivate() {
+    delete_option( 'olint_open_external_link_in_new_tab' );
+    delete_option( 'olint_open_internal_link_in_new_tab' );
+}
