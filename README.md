@@ -1,2 +1,2 @@
-# external-links-in-new-tab
-Wordpress plugin. Opens all external links in a new window. Search engine optimization (SEO) friendly.
+# open-links-in-new-tab
+Wordpress plugin. Opens links in a new tab. Search engine optimization (SEO) friendly.

@@ -1,22 +1,22 @@
 <?php
 
-add_action( 'wp_head', 'elint_initialize_external_links_in_new_tab' );
+add_action( 'wp_head', 'olint_initialize_links_in_new_tab' );
 
 /**
- * Initialize External Links In New Tab
+ * Initialize Links In New Tab
  *
  * @since 1.0.0
  *
  * @return void
  */
-function elint_initialize_external_links_in_new_tab() {
+function olint_initialize_links_in_new_tab() {
 
     //get current website domain
     $current_domain = parse_url( get_option( 'home' ) );
     ?>
     <script type="text/javascript">
         //<![CDATA[
-        function elint_prepare_all_external_links() {
+        function olint_prepare_all_external_links() {
 
             if( !document.links ) {
                 document.links = document.getElementsByTagName('a');
@@ -45,20 +45,20 @@ function elint_initialize_external_links_in_new_tab() {
             }
         }
 
-        function elint_load_external_links_in_new_tab( function_name ){
-            var elint_on_load = window.onload;
+        function olint_load_external_links_in_new_tab( function_name ){
+            var olint_on_load = window.onload;
 
             if (typeof window.onload != 'function'){
                 window.onload = function_name;
             } else {
                 window.onload = function(){
-                    elint_on_load();
+                    olint_on_load();
                     function_name();
                 }
             }
         }
 
-        elint_load_external_links_in_new_tab( elint_prepare_all_external_links );
+        olint_load_external_links_in_new_tab( olint_prepare_all_external_links );
 
     //]]>
     </script>
