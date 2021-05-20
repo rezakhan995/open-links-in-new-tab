@@ -42,11 +42,20 @@ class Olinewtab {
      */
     public function initialize_modules(){
         do_action( 'olint/before_load' );
-
-        require_once self::plugin_dir() . 'core/bootstrap.php';
+        
+        require_once self::core_dir() . 'bootstrap.php';
 
         do_action( 'olint/after_load' );
     }  
+    
+
+    static function olint_activate() {
+        update_option( "olint_open_external_link_in_new_tab", 'yes' );
+    }
+    
+    static function olint_deactivate() {
+        delete_option( 'olint_open_external_link_in_new_tab' );
+    }
 
     /**
      * Plugin Version
@@ -57,6 +66,28 @@ class Olinewtab {
      */
     public static function version(){
         return '1.0.0';
+    }
+
+    /**
+     * Core Url
+     * 
+     * @since 1.0.0
+     *
+     * @return string
+     */
+    public static function core_url(){
+        return trailingslashit( self::plugin_url() . 'core' );
+    }
+
+    /**
+     * Core Directory Path
+     * 
+     * @since 1.0.0
+     *
+     * @return string
+     */
+    public static function core_dir(){
+        return trailingslashit( self::plugin_dir() . 'core' );
     }
 
     /**
@@ -117,3 +148,10 @@ function olinewtab(){
 
 // Let's go...
 olinewtab();
+
+/* Do something when the plugin is activated? */
+register_activation_hook( __FILE__, ['Olinewtab', 'olint_activate'] );
+
+/* Do something when the plugin is deactivated? */
+register_deactivation_hook( __FILE__, ['Olinewtab', 'olint_deactivate'] );
+

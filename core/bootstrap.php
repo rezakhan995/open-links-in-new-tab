@@ -1,6 +1,7 @@
 <?php
 
 add_action( 'wp_head', 'olint_initialize_links_in_new_tab' );
+add_action( 'admin_menu', 'olint_admin_menu' );
 
 /**
  * Initialize Links In New Tab
@@ -65,7 +66,6 @@ function olint_initialize_links_in_new_tab() {
     <?php
 }
 
-add_action( 'admin_menu', 'olint_admin_menu' );
 function olint_admin_menu() {
     add_options_page( esc_html__( 'Open links in new tab', "open-links-in-new-tab" ),
         esc_html__( 'Open Links', "open-links-in-new-tab" ),
@@ -96,18 +96,4 @@ function olint_options_page() {
         </p>
     </div>
     <?php
-}
-
-
-register_activation_hook( __FILE__, 'olint_activate' );
-register_deactivation_hook( __FILE__, 'olint_deactivate' );
-
-function olint_activate() {
-    update_option( "olint_open_external_link_in_new_tab", 'yes' );
-    update_option( "olint_open_internal_link_in_new_tab", '' );
-}
-
-function olint_deactivate() {
-    delete_option( 'olint_open_external_link_in_new_tab' );
-    delete_option( 'olint_open_internal_link_in_new_tab' );
 }
