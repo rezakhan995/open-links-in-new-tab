@@ -22,8 +22,10 @@ function olint_initialize_links_in_new_tab() {
             if( !document.links ) {
                 document.links = document.getElementsByTagName('a');
             }
-            var all_links       = document.links;
-            var open_in_new_tab = false;
+            var all_links                = document.links;
+            var open_in_new_tab          = false;
+            var open_external_in_new_tab = '<?php echo trim( get_option( "olint_open_external_link_in_new_tab", '' ) ) ?>';
+            var open_internal_in_new_tab = '<?php echo trim( get_option( "olint_open_internal_link_in_new_tab", '' ) ) ?>';
 
             // loop through all the links of current page
             for( var current = 0; current < all_links.length; current++ ) {
@@ -32,16 +34,24 @@ function olint_initialize_links_in_new_tab() {
 
                 //only work if current link does not have any onClick attribute
                 if( all_links[current].hasAttribute('onClick') == false ) {
-                    // open link in new tab if the web address starts with http or https, but does not refer to current domain
-                    if( (current_link.href.search(/^http/) != -1) && (current_link.href.search('<?php echo esc_html( $current_domain['host'] ); ?>') == -1)  && (current_link.href.search(/^#/) == -1) ){
-                        open_in_new_tab = true;
+                    if('yes' == open_internal_in_new_tab){
+                        // open link in new tab if the web address starts with http or https, and refers to current domain
+                        if( (current_link.href.search(/^http/) != -1) && ((current_link.href.search('<?php echo esc_html( $current_domain['host'] ); ?>')) || (current_link.href.search(/^#/))) ){
+                            open_in_new_tab = true;
+                        }
+                    }
+                    if('yes' == open_external_in_new_tab){
+                        // open link in new tab if the web address starts with http or https, but does not refer to current domain
+                        if( (current_link.href.search(/^http/) != -1) && (current_link.href.search('<?php echo esc_html( $current_domain['host'] ); ?>') == -1)  && (current_link.href.search(/^#/) == -1) ){
+                            open_in_new_tab = true;
+                        }
                     }
 
                     //if open_in_new_tab is true, update onClick attribute of current link
                     if( open_in_new_tab == true ){
                         all_links[current].setAttribute( 'onClick', 'javascript:window.open(\''+current_link.href+'\'); return false;' );
-                        all_links[current].removeAttribute('target');
                     }
+                    all_links[current].removeAttribute('target');
                 }
             }
         }
@@ -68,7 +78,7 @@ function olint_initialize_links_in_new_tab() {
 
 function olint_admin_menu() {
     add_options_page( esc_html__( 'Open links in new tab', "open-links-in-new-tab" ),
-        esc_html__( 'Open Links', "open-links-in-new-tab" ),
+        esc_html__( 'Links In New Tab', "open-links-in-new-tab" ),
         'manage_options',
         'open_links_in_new_tab',
         'olint_options_page' );
