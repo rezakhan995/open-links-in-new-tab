@@ -1,20 +1,24 @@
 === Open Links In New Tab ===
 Contributors: rezakhan995
-Tags: links, external links, internal links, new tab, new window, target blank
+Tags: target blank, external links, open links, new tab, new window
 Requires at least: 5.2
-Tested up to: 5.7
-Stable tag: 1.0.0
+Tested up to: 5.8.2
+Stable tag: 1.0.1
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Opens both internal and external links in a new tab depending on the user has chosen.
+Opens both internal and external links in a new tab depending on user settings.
 
 == Description ==
 
 Opens internal and external links in a new tab. You can set if you want to open internal links in new tab, or external links in a new tab or both.
 
+In some cases, you may need to open links in new tab. We can achieve this by using this plugin. You can open both external links and internal links in new tab.
+
 This plugin adds only a few lines of JavaScript code and it does not depend on any external library. It does not event require jQuery, which is the most common JavaScript library. Moreover, the code it produces is completely search engine optimized (SEO).
+
+## 💙 Learn More About [Open Links In New Tab](https://ollzo.com/open-link-in-new-tab-wordpress-plugin/).
 
 
 
@@ -36,10 +40,16 @@ This plugin is still not compatible with WooCommerce because WooCommerce replace
 
 
 == Screenshots ==
-
+1. Main Settings 
 
 == Changelog ==
 
+= 1.0.1 ( December 08, 2021 ) =
+Tweak             : Compatible with PHP 8
+Tweak             : Compatible with Wordpress 5.8.2
+
+= 1.0.0 ( December 08, 2021 ) =
+Initial release
 
 == Upgrade Notice ==
 
