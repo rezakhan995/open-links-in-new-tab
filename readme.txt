@@ -3,7 +3,7 @@ Contributors: rezakhan995
 Tags: target blank, external links, open links, new tab, new window
 Requires at least: 5.2
 Tested up to: 6.0.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -43,6 +43,9 @@ This plugin is still not compatible with WooCommerce because WooCommerce replace
 1. Main Settings 
 
 == Changelog ==
+
+= 1.0.6 ( August 10, 2022 ) =
+Fix               : General bug fix
 
 = 1.0.5 ( August 10, 2022 ) =
 Fix               : Minor bug fix
