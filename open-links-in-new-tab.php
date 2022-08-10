@@ -3,7 +3,7 @@
  * Plugin Name:       Open Links In New Tab
  * Plugin URI:        https://wordpress.org/plugins/open-links-in-new-tab/
  * Description:       Wordpress plugin that opens links in a new tab. Search engine optimization (SEO) friendly.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            Reza Khan
  * Author URI:        https://www.reza-khan.com/
  * License:           GPL-2.0+
@@ -17,6 +17,17 @@ defined('ABSPATH') || wp_die('No access directly.');
 class Olinewtab {
 
     public static $instance = null;
+
+    /**
+     * Plugin Version
+     * 
+     * @since 1.0.0
+     *
+     * @return string
+     */
+    public static function version(){
+        return '1.0.5';
+    }
 
     public static function init(){
         if( self::$instance === null){
@@ -55,17 +66,6 @@ class Olinewtab {
     
     static function olint_deactivate() {
         delete_option( 'olint_open_external_link_in_new_tab' );
-    }
-
-    /**
-     * Plugin Version
-     * 
-     * @since 1.0.0
-     *
-     * @return string
-     */
-    public static function version(){
-        return '1.0.4';
     }
 
     /**
