@@ -8,19 +8,27 @@ Requires PHP: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Opens both internal and external links in a new tab depending on user settings.
+Opens external links and internal links in a new window depending on user settings. Manage all external & internal links on your site.
 
 == Description ==
 
-Opens internal and external links in a new tab. You can set if you want to open internal links in new tab, or external links in a new tab or both.
+Afraid of internal links and external links management? Use the plugin and set the website's internal links in a new tab, and external links in a new tab. You can choose either an internal link in a new tab or an external link in a new tab. Or Both internal and external links in a new tab.
 
-In some cases, you may need to open links in new tab. We can achieve this by using this plugin. You can open both external links and internal links in new tab.
+In some cases, you may need to open links in a new tab. We can achieve this by using this plugin. You can open both external links and internal links in the new tab.
 
-This plugin adds only a few lines of JavaScript code and it does not depend on any external library. It does not event require jQuery, which is the most common JavaScript library. Moreover, the code it produces is completely search engine optimized (SEO).
+This plugin adds only a few lines of JavaScript code and it does not depend on any external library. It does not even require jQuery, which is the most common JavaScript library. Moreover, the code it produces is completely SEO optimized.
 
-## 💙 Learn More About [Open Links In New Tab](https://ollzo.com/open-link-in-new-tab-wordpress-plugin/).
+##👉 Check the review by ollzo about [Open Links in New Tab](https://ollzo.com/open-link-in-new-tab-wordpress-plugin/).
 
+👉 FEATURES
 
+* Manage external links
+* Manage internal links
+* Open links in a new tab
+* Open links in a new window
+* SEO friendly
+
+**Like the plugin?** 👉 [Rate it](https://wordpress.org/support/plugin/open-links-in-new-tab/reviews/) to support the development.
 
 == Installation ==
 
@@ -30,13 +38,13 @@ This plugin adds only a few lines of JavaScript code and it does not depend on a
 
 == Frequently Asked Questions ==
 
-= Does it conflict with any other plugin. =
+= Does it conflict with any other plugin? =
 
 The plugin may conflict with other plugins that forcefully change the links’ onClick attribute.
 
 = Does it work with WooCommerce? =
 
-This plugin is still not compatible with WooCommerce because WooCommerce replaces their external links from a tag to form tag.
+This plugin is still not compatible with WooCommerce because WooCommerce replaces its external links from a tag to a form tag.
 
 
 == Screenshots ==
