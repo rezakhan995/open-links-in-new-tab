@@ -1,10 +1,18 @@
 <?php
+/**
+ * Contains core functions required to run the plugin
+ * 
+ * @package Open_Links_In_New_Tab
+ * 
+ * @since 1.0.0
+ */
+
 
 add_action( 'wp_head', 'olint_initialize_links_in_new_tab' );
 add_action( 'admin_menu', 'olint_admin_menu' );
 
 /**
- * Initialize Links In New Tab
+ * Script that forces links to open in a new tab.
  *
  * @since 1.0.0
  *
@@ -12,7 +20,7 @@ add_action( 'admin_menu', 'olint_admin_menu' );
  */
 function olint_initialize_links_in_new_tab() {
 
-    //get current website domain
+    //get current website domain.
     $current_domain = parse_url( get_option( 'home' ) );
     ?>
     <script type="text/javascript">
@@ -27,27 +35,27 @@ function olint_initialize_links_in_new_tab() {
             var open_external_in_new_tab = '<?php echo trim( get_option( "olint_open_external_link_in_new_tab", '' ) ) ?>';
             var open_internal_in_new_tab = '<?php echo trim( get_option( "olint_open_internal_link_in_new_tab", '' ) ) ?>';
 
-            // loop through all the links of current page
+            // loop through all the links of current page.
             for( var current = 0; current < all_links.length; current++ ) {
                 var current_link = all_links[current];
                 open_in_new_tab  = false;
 
-                //only work if current link does not have any onClick attribute
+                //only work if current link does not have any onClick attribute.
                 if( all_links[current].hasAttribute('onClick') == false ) {
                     if('yes' == open_internal_in_new_tab){
-                        // open link in new tab if the web address starts with http or https, and refers to current domain
+                        // open link in new tab if the web address starts with http or https, and refers to current domain.
                         if( (current_link.href.search(/^http/) != -1) && ((current_link.href.search('<?php echo esc_html( $current_domain['host'] ); ?>')) || (current_link.href.search(/^#/))) ){
                             open_in_new_tab = true;
                         }
                     }
                     if('yes' == open_external_in_new_tab){
-                        // open link in new tab if the web address starts with http or https, but does not refer to current domain
+                        // open link in new tab if the web address starts with http or https, but does not refer to current domain.
                         if( (current_link.href.search(/^http/) != -1) && (current_link.href.search('<?php echo esc_html( $current_domain['host'] ); ?>') == -1)  && (current_link.href.search(/^#/) == -1) ){
                             open_in_new_tab = true;
                         }
                     }
 
-                    //if open_in_new_tab is true, update onClick attribute of current link
+                    //if open_in_new_tab is true, update onClick attribute of current link.
                     if( open_in_new_tab == true ){
                         all_links[current].setAttribute( 'onClick', 'javascript:window.open(\''+current_link.href+'\'); return false;' );
                     }
@@ -76,6 +84,13 @@ function olint_initialize_links_in_new_tab() {
     <?php
 }
 
+/**
+ * Add menu to admin menu.
+ *
+ * @since 1.0.0
+ * 
+ * @return void
+ */
 function olint_admin_menu() {
     add_options_page( esc_html__( 'Open links in new tab', "open-links-in-new-tab" ),
         esc_html__( 'Links In New Tab', "open-links-in-new-tab" ),
@@ -84,6 +99,13 @@ function olint_admin_menu() {
         'olint_options_page' );
 }
 
+/**
+ * Shows settings page for our plugin.
+ * 
+ * @since 1.0.0
+ *
+ * @return void
+ */
 function olint_options_page() {
     ?>
     <div class="olint-wrap">
